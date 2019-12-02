@@ -38,6 +38,7 @@ dependencies {
     implementation(Libraries.timberKt)
 
     testImplementation(Libraries.Test.core)
+    testImplementation(Libraries.Test.kotlinCoroutines)
     testImplementation(Libraries.Test.runner)
     testImplementation(Libraries.Test.truth)
     testImplementation(Libraries.Test.truthKtx)

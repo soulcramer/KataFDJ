@@ -1,13 +1,12 @@
 package app.soulcramer.domain.interactor
 
 import kotlinx.coroutines.CoroutineDispatcher
-import kotlinx.coroutines.Dispatchers
 import kotlinx.coroutines.withContext
 import kotlinx.coroutines.withTimeout
 import java.util.concurrent.TimeUnit
 
 abstract class UseCase<in P, R>(
-    protected val dispatcher: CoroutineDispatcher = Dispatchers.Default
+    protected val dispatcher: CoroutineDispatcher
 ) {
 
     suspend operator fun invoke(params: P, timeoutMs: Long = defaultTimeoutMs): R {

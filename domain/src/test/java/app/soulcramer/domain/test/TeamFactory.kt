@@ -13,18 +13,21 @@ class TeamFactory {
         fun makeTeam(
             id: String = randomUuid(),
             name: String = randomUuid(),
+            sport: String = randomUuid(),
             imageUrl: String = randomUuid()
         ): Team {
-            return Team(id, name, imageUrl)
+            return Team(id, name, sport, imageUrl)
         }
 
         fun makeTeamList(
             count: Int,
-            name: String = ""
+            name: String = "",
+            hasOtherSportThanSoccer: Boolean = false
         ): List<Team> {
             val teams = mutableListOf<Team>()
             repeat(count) {
-                teams += makeTeam()
+                val sport = DataFactory.makeSport(hasOtherSportThanSoccer)
+                teams += makeTeam(name = name, sport = sport)
             }
             return teams
         }

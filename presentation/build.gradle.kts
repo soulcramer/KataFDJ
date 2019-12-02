@@ -34,4 +34,18 @@ dependencies {
     implementation(Libraries.kotlinStandardLibrary)
     implementation(Libraries.kotlinCoroutines)
     implementation(Libraries.kotlinCoroutinesAndroid)
+
+    implementation(project(Modules.domain))
+
+    implementation(Libraries.koin)
+
+    testImplementation(Libraries.Test.core)
+    testImplementation(Libraries.Test.kotlinCoroutines)
+    testImplementation(Libraries.Test.runner)
+    testImplementation(Libraries.Test.truth)
+    testImplementation(Libraries.Test.truthKtx)
+    testImplementation(Libraries.Test.robolectric)
+    testImplementation(Libraries.Test.mockk)
+    testImplementation(project(Modules.domain))
+
 }

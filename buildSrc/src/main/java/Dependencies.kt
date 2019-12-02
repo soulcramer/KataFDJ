@@ -4,6 +4,7 @@ object Modules {
     const val app = ":app"
 
     const val remote = ":remote"
+    const val cache = ":cache"
     const val domain = ":domain"
     const val presentation = ":presentation"
 }
@@ -174,6 +175,9 @@ object Libraries {
         const val mockkInstrumented = "io.mockk:mockk-android:${Versions.Test.mockk}"
 
         const val koin = "org.koin:koin-test:${Versions.koin}"
+
+        const val kotlinCoroutines =
+            "org.jetbrains.kotlinx:kotlinx-coroutines-test:${Versions.coroutines}"
     }
 }
 

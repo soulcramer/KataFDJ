@@ -1,0 +1,18 @@
+<?xml version="1.0" encoding="utf-8"?>
+<navigation xmlns:android="http://schemas.android.com/apk/res/android"
+    xmlns:app="http://schemas.android.com/apk/res-auto"
+    xmlns:tools="http://schemas.android.com/tools"
+    android:id="@+id/main_nav"
+    app:startDestination="@id/browseTeamsFragment">
+
+    <activity
+        android:id="@+id/mainActivity"
+        android:name="app.soulcramer.katafdj.MainActivity"
+        android:label="main_activity"
+        tools:layout="@layout/activity_main" />
+    <fragment
+        android:id="@+id/browseTeamsFragment"
+        android:name="app.soulcramer.katafdj.ui.browse.teams.BrowseTeamsFragment"
+        android:label="BrowseTeamsFragment"
+        tools:layout="@layout/fragment_browse_teams" />
+</navigation>

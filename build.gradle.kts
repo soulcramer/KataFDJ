@@ -1,10 +1,13 @@
 import org.jetbrains.kotlin.gradle.tasks.KotlinCompile
 
 buildscript {
+    extra["kotlin_version"] = "1.3.60-eap-25"
     repositories {
         google()
         jcenter()
         maven(url = "https://dl.bintray.com/kotlin/kotlin-eap")
+        maven(url = "https://jitpack.io")
+        maven(url = "https://oss.sonatype.org/content/repositories/snapshots/")
     }
     dependencies {
         classpath("com.android.tools.build:gradle:4.0.0-alpha03")
@@ -19,6 +22,8 @@ allprojects {
         google()
         jcenter()
         maven(url = "https://dl.bintray.com/kotlin/kotlin-eap")
+        maven(url = "https://jitpack.io")
+        maven(url = "https://oss.sonatype.org/content/repositories/snapshots/")
     }
 }
 

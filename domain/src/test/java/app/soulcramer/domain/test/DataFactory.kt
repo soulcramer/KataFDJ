@@ -32,5 +32,17 @@ class DataFactory {
             }
             return items
         }
+
+        fun makeSport(hasOtherSportThanSoccer: Boolean): String {
+            return if (hasOtherSportThanSoccer) {
+                if (randomBoolean()) {
+                    "Soccer"
+                } else {
+                    randomUuid()
+                }
+            } else {
+                "Soccer"
+            }
+        }
     }
 }
