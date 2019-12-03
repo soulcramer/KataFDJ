@@ -13,17 +13,16 @@ import app.soulcramer.katafdj.R
 import app.soulcramer.presentation.browse.players.BrowsePlayersContract
 import app.soulcramer.presentation.model.PlayerView
 import kotlinx.android.synthetic.main.fragment_browse_players.*
-import org.koin.android.ext.android.inject
+import org.koin.android.ext.android.get
 import org.koin.core.parameter.parametersOf
 
 
-class BrowsePlayerFragment : Fragment(), BrowsePlayersContract.View {
+class BrowsePlayersFragment : Fragment(), BrowsePlayersContract.View {
 
-    private val args by navArgs<BrowsePlayerFragmentArgs>()
+    private val args by navArgs<BrowsePlayersFragmentArgs>()
 
-    private val browsePresenter: BrowsePlayersContract.Presenter by inject {
-        parametersOf(this, lifecycleScope, args.teamName)
-    }
+    private var browsePresenter: BrowsePlayersContract.Presenter? = null
+    private var teamName: String = ""
 
     private val playersAdapter: BrowsePlayersAdapter by lazy {
         BrowsePlayersAdapter(emptyList())
@@ -40,13 +39,28 @@ class BrowsePlayerFragment : Fragment(), BrowsePlayersContract.View {
     override fun onViewCreated(view: View, savedInstanceState: Bundle?) {
         super.onViewCreated(view, savedInstanceState)
 
-        players_recycler_view.run {
+        teamName = if (savedInstanceState != null) {
+            savedInstanceState.getString(TEAM_NAME_KEY, args.teamName)
+        } else {
+            args.teamName
+        }
+
+        browsePresenter = get { parametersOf(this, lifecycleScope, teamName) }
+
+        players_recycler_view.apply {
             layoutManager = LinearLayoutManager(context)
             adapter = playersAdapter
             setHasFixedSize(true)
         }
 
-        browsePresenter.start()
+        empty_title_text_view.text = getString(R.string.players_empty_title, teamName)
+
+        browsePresenter?.start()
+    }
+
+    override fun onSaveInstanceState(outState: Bundle) {
+        outState.putString(TEAM_NAME_KEY, teamName)
+        super.onSaveInstanceState(outState)
     }
 
     override fun showProgress() {
@@ -67,8 +81,14 @@ class BrowsePlayerFragment : Fragment(), BrowsePlayersContract.View {
     }
 
     override fun showEmptyState() {
+        empty_title_text_view.isVisible = true
     }
 
     override fun hideEmptyState() {
+        empty_title_text_view.isVisible = false
+    }
+
+    companion object {
+        private const val TEAM_NAME_KEY = "bundle.team.name"
     }
 }

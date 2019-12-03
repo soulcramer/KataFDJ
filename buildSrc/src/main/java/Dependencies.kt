@@ -26,7 +26,7 @@ object Versions {
         const val room = "2.2.0"
     }
 
-    const val android_gradle = "3.6.0-beta01"
+    const val android_gradle = "3.5.2"
     const val benManes = "0.27.0"
     const val buildScan = "2.4.2"
     const val coroutines = "1.3.2"
@@ -78,32 +78,19 @@ object Libraries {
         const val swipeRefreshLayout =
             "androidx.swiperefreshlayout:swiperefreshlayout:${Versions.AndroidX.swipeRefreshLayout}"
         const val core = "androidx.core:core-ktx:${Versions.AndroidX.core}"
-        const val emoji = "androidx.emoji:emoji:${Versions.AndroidX.emoji}"
         const val fragment = "androidx.fragment:fragment-ktx:${Versions.AndroidX.fragment}"
-        const val lifecycle =
-            "androidx.lifecycle:lifecycle-extensions:${Versions.AndroidX.lifecycle}"
-        const val lifecycleRuntime =
-            "androidx.lifecycle:lifecycle-runtime-ktx:${Versions.AndroidX.lifecycle}"
-        const val livedata =
-            "androidx.lifecycle:lifecycle-livedata-ktx:${Versions.AndroidX.lifecycle}"
         const val materialComponent =
             "com.google.android.material:material:${Versions.AndroidX.material}"
         const val navigationFragment =
             "androidx.navigation:navigation-fragment-ktx:${Versions.AndroidX.navigation}"
         const val navigationUi =
             "androidx.navigation:navigation-ui-ktx:${Versions.AndroidX.navigation}"
-        const val paging = "androidx.paging:paging-runtime-ktx:${Versions.AndroidX.paging}"
         const val recyclerView =
             "androidx.recyclerview:recyclerview:${Versions.AndroidX.recyclerview}"
         const val room = "androidx.room:room-ktx:${Versions.AndroidX.room}"
         const val roomRuntime = "androidx.room:room-runtime:${Versions.AndroidX.room}"
         const val roomCompiler = "androidx.room:room-compiler:${Versions.AndroidX.room}"
     }
-
-    const val epoxy = "com.airbnb.android:epoxy:${Versions.epoxy}"
-    const val epoxyProcessor = "com.airbnb.android:epoxy-processor:${Versions.epoxy}"
-    const val epoxyDataBinding = "com.airbnb.android:epoxy-databinding:${Versions.epoxy}"
-    const val epoxyPaging = "com.airbnb.android:epoxy-paging:${Versions.epoxy}"
 
     const val kotlinStandardLibrary = "org.jetbrains.kotlin:kotlin-stdlib-jdk8:${Versions.kotlin}"
     const val kotlinCoroutines =
@@ -115,7 +102,6 @@ object Libraries {
     const val koin = "org.koin:koin-core:${Versions.koin}"
     const val koinAndroid = "org.koin:koin-android:${Versions.koin}"
     const val koinAndroidXScope = "org.koin:koin-androidx-scope:${Versions.koin}"
-    const val koinViewModel = "org.koin:koin-androidx-viewmodel:${Versions.koin}"
 
     // Leak Canary
     const val leackCanary = "com.squareup.leakcanary:leakcanary-android:${Versions.leakcanary}"

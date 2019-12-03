@@ -25,7 +25,7 @@
     </fragment>
     <fragment
         android:id="@+id/browsePlayerFragment"
-        android:name="app.soulcramer.katafdj.ui.browse.players.BrowsePlayerFragment"
+        android:name="app.soulcramer.katafdj.ui.browse.players.BrowsePlayersFragment"
         android:label="BrowsePlayerFragment"
         tools:layout="@layout/fragment_browse_players">
         <argument

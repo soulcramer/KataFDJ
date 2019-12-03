@@ -1,16 +1,15 @@
 import org.jetbrains.kotlin.gradle.tasks.KotlinCompile
 
 buildscript {
-    extra["kotlin_version"] = "1.3.60-eap-25"
+    extra["kotlin_version"] = "1.3.50"
     repositories {
         google()
         jcenter()
-        maven(url = "https://dl.bintray.com/kotlin/kotlin-eap")
         maven(url = "https://jitpack.io")
         maven(url = "https://oss.sonatype.org/content/repositories/snapshots/")
     }
     dependencies {
-        classpath("com.android.tools.build:gradle:4.0.0-alpha03")
+        classpath("com.android.tools.build:gradle:${Versions.android_gradle}")
         classpath(kotlin("gradle-plugin", Versions.kotlin))
         classpath("androidx.navigation:navigation-safe-args-gradle-plugin:${Versions.AndroidX.navigation}")
         classpath("org.jetbrains.kotlin:kotlin-android-extensions:${Versions.kotlin}")
@@ -21,7 +20,6 @@ allprojects {
     repositories {
         google()
         jcenter()
-        maven(url = "https://dl.bintray.com/kotlin/kotlin-eap")
         maven(url = "https://jitpack.io")
         maven(url = "https://oss.sonatype.org/content/repositories/snapshots/")
     }

@@ -1,3 +1,5 @@
 <resources>
     <string name="app_name">KataFDJ</string>
+    <string name="players_empty_title">There\'s no player for the team %1$s</string>
+    <string name="teams_empty_title">There\'s no teams for the league %1$s</string>
 </resources>
