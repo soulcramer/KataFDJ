@@ -12,7 +12,7 @@ open class PlayerEntityMapper : EntityMapper<RemotePlayer, Player> {
             type.strPosition,
             type.strSigning,
             type.dateBorn,
-            type.strCutout
+            type.strCutout ?: type.strRender ?: type.strThumb ?: ""
         )
     }
 }

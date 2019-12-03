@@ -13,7 +13,7 @@ class TeamRemoteImpl(
 
     override suspend fun getPlayers(teamName: String): List<Player> {
         return try {
-            service.getTeamPlayers(teamName).players?.map(playerEntityMapper::mapFromRemote)
+            service.getTeamPlayers(teamName).player?.map(playerEntityMapper::mapFromRemote)
                 ?: emptyList()
         } catch (httpException: HttpException) {
             // Since as of 2019-12-03 the API to get the players is now reserverd to patreons supporter

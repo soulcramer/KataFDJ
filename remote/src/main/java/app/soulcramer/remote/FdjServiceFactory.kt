@@ -15,13 +15,16 @@ object FdjServiceFactory {
         val okHttpClient = makeOkHttpClient(
             makeLoggingInterceptor(isDebug)
         )
-        return makeFdjService(okHttpClient, makeMoshi(), apiKey)
+        val apiVersion = if (apiKey != "1") "v2" else "v1"
+
+        return makeFdjService(okHttpClient, makeMoshi(), apiKey, apiVersion)
     }
 
     private fun makeFdjService(
         okHttpClient: OkHttpClient,
         moshi: Moshi,
-        apiKey: String
+        apiKey: String,
+        apiVersion: String
     ): FdjService {
         val retrofit = Retrofit.Builder()
             .baseUrl("https://www.thesportsdb.com/api/v1/json/$apiKey/")

@@ -14,7 +14,7 @@ class BrowsePlayersAdapter(private var players: List<PlayerView>) :
     RecyclerView.Adapter<BrowsePlayersAdapter.ViewHolder>() {
 
     class ViewHolder(rootView: View) : RecyclerView.ViewHolder(rootView) {
-        var name: TextView = rootView.findViewById(R.id.team_name_text_view)
+        var name: TextView = rootView.findViewById(R.id.player_name_text_view)
         var position: TextView = rootView.findViewById(R.id.player_position_text_view)
         var birthday: TextView = rootView.findViewById(R.id.player_birthday_text_view)
         var signin: TextView = rootView.findViewById(R.id.player_siging_text_view)

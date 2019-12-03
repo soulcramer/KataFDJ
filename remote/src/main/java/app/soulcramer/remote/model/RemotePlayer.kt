@@ -9,8 +9,10 @@ class RemotePlayer(
     val strPosition: String,
     val strSigning: String,
     val dateBorn: String,
-    val strCutout: String
+    val strCutout: String?,
+    val strRender: String?,
+    val strThumb: String?
 )
 
 @JsonClass(generateAdapter = true)
-class ResponsePlayer(val players: List<RemotePlayer>?)
+class ResponsePlayer(val player: List<RemotePlayer>?)
