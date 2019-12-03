@@ -1,6 +1,7 @@
 package app.soulcramer.remote
 
 import app.soulcramer.domain.repository.league.LeagueRemoteStore
+import app.soulcramer.domain.repository.team.TeamRemoteStore
 import app.soulcramer.remote.mapper.LeagueEntityMapper
 import app.soulcramer.remote.mapper.PlayerEntityMapper
 import app.soulcramer.remote.mapper.TeamEntityMapper
@@ -18,4 +19,5 @@ val remoteModule: Module = module(override = true) {
     }
 
     factory<LeagueRemoteStore> { LeagueRemoteImpl(get(), get(), get()) }
+    factory<TeamRemoteStore> { TeamRemoteImpl(get(), get()) }
 }

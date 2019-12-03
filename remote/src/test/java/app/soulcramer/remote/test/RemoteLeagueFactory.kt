@@ -10,10 +10,9 @@ class RemoteLeagueFactory {
         fun makeLeague(
             id: String = randomUuid(),
             name: String = randomUuid(),
-            sport: String = randomUuid(),
-            alternateName: String = randomUuid()
+            sport: String = randomUuid()
         ): RemoteLeague {
-            return RemoteLeague(id, name, sport, alternateName)
+            return RemoteLeague(id, name, sport)
         }
 
         fun makeLeagueList(

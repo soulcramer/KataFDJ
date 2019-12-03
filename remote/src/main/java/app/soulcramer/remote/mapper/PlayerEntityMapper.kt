@@ -11,6 +11,7 @@ open class PlayerEntityMapper : EntityMapper<RemotePlayer, Player> {
             type.strPlayer,
             type.strPosition,
             type.strSigning,
+            type.dateBorn,
             type.strCutout
         )
     }

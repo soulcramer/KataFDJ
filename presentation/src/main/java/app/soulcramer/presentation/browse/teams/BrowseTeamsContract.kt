@@ -30,7 +30,7 @@ interface BrowseTeamsContract {
 
     interface Presenter : BasePresenter {
 
-        suspend fun retrieveTeams(leagueName: String)
+        fun retrieveTeams(leagueName: String)
 
         suspend fun retrieveLeagues()
 

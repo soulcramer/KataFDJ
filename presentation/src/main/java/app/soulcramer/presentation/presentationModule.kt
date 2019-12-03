@@ -4,6 +4,7 @@ import app.soulcramer.domain.interactor.GetAllLeagues
 import app.soulcramer.domain.interactor.GetLeagueTeams
 import app.soulcramer.domain.interactor.GetTeamPlayers
 import app.soulcramer.domain.repository.league.LeagueStoreFactory
+import app.soulcramer.presentation.browse.players.BrowsePlayersContract
 import app.soulcramer.presentation.browse.players.BrowsePlayersPresenter
 import app.soulcramer.presentation.browse.teams.BrowseTeamsContract
 import app.soulcramer.presentation.browse.teams.BrowseTeamsPresenter
@@ -30,7 +31,7 @@ val presentationModule: Module = module(override = true) {
         BrowseTeamsPresenter(view, get(), get(), get(), get(), coroutineScope, leagueName)
     }
 
-    single { (coroutineScope: CoroutineScope, teamName: String) ->
-        BrowsePlayersPresenter(get(), get(), get(), coroutineScope, teamName)
+    single<BrowsePlayersContract.Presenter> { (view: BrowsePlayersContract.View, coroutineScope: CoroutineScope, teamName: String) ->
+        BrowsePlayersPresenter(view, get(), get(), coroutineScope, teamName)
     }
 }

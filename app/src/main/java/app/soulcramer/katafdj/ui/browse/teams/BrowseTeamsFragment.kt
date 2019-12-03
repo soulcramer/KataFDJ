@@ -5,20 +5,20 @@ import android.view.LayoutInflater
 import android.view.View
 import android.view.ViewGroup
 import android.widget.ArrayAdapter
+import androidx.core.view.isVisible
 import androidx.core.widget.doOnTextChanged
 import androidx.fragment.app.Fragment
 import androidx.lifecycle.lifecycleScope
+import androidx.navigation.NavDirections
+import androidx.navigation.fragment.findNavController
 import androidx.recyclerview.widget.GridLayoutManager
 import app.soulcramer.katafdj.R
 import app.soulcramer.presentation.browse.teams.BrowseTeamsContract
 import app.soulcramer.presentation.model.LeagueView
 import app.soulcramer.presentation.model.TeamView
 import kotlinx.android.synthetic.main.fragment_browse_teams.*
-import kotlinx.coroutines.Job
-import kotlinx.coroutines.delay
 import org.koin.android.ext.android.inject
 import org.koin.core.parameter.parametersOf
-import java.util.concurrent.TimeUnit
 
 
 class BrowseTeamsFragment : Fragment(), BrowseTeamsContract.View {
@@ -27,19 +27,13 @@ class BrowseTeamsFragment : Fragment(), BrowseTeamsContract.View {
         parametersOf(this, lifecycleScope, "")
     }
 
-    private val adapter: BrowseTeamsAdapter by lazy {
+    private val teamsAdapter: BrowseTeamsAdapter by lazy {
         BrowseTeamsAdapter(emptyList())
     }
 
     private val leagueAdapter by lazy {
-        ArrayAdapter<String>(
-            context,
-            R.layout.item_league,
-            mutableListOf()
-        )
+        ArrayAdapter<String>(context, R.layout.item_league, mutableListOf())
     }
-
-    private var throttleTeamSearchJob: Job? = null
 
     override fun onCreateView(
         inflater: LayoutInflater,
@@ -52,29 +46,42 @@ class BrowseTeamsFragment : Fragment(), BrowseTeamsContract.View {
     override fun onViewCreated(view: View, savedInstanceState: Bundle?) {
         super.onViewCreated(view, savedInstanceState)
         teams_recycler_view.layoutManager = GridLayoutManager(context, 2)
-        teams_recycler_view.adapter = adapter
+        teamsAdapter.setOnItemClickListener(object : BrowseTeamsAdapter.OnItemClickListener {
+            override fun onItemClick(itemView: View?, direction: NavDirections, position: Int) {
+                findNavController().navigate(direction)
+            }
+        })
+        teams_recycler_view.adapter = teamsAdapter
 
         browsePresenter.start()
 
         search_league_text_input_layout.editText?.doOnTextChanged { text, _, _, _ ->
-            throttleTeamSearchJob?.cancel()
-            throttleTeamSearchJob = lifecycleScope.launchWhenResumed {
-                delay(TimeUnit.MILLISECONDS.toMillis(500))
-                browsePresenter.retrieveTeams(text.toString())
-            }
+            browsePresenter.retrieveTeams(text.toString())
         }
 
         search_league_auto_complete_text_view.setAdapter(leagueAdapter)
     }
 
+    override fun onSaveInstanceState(outState: Bundle) {
+        super.onSaveInstanceState(outState)
+    }
+
+    override fun onDestroyView() {
+        browsePresenter.stop()
+        super.onDestroyView()
+    }
+
     override fun showProgress() {
+        progress_bard.show()
     }
 
     override fun hideProgress() {
+        progress_bard.hide()
     }
 
     override fun showTeams(teams: List<TeamView>) {
-        adapter.setTeams(teams)
+        teams_recycler_view.isVisible = true
+        teamsAdapter.setTeams(teams)
     }
 
     override fun loadLeagues(leagues: List<LeagueView>) {
@@ -83,6 +90,7 @@ class BrowseTeamsFragment : Fragment(), BrowseTeamsContract.View {
     }
 
     override fun hideTeams() {
+        teams_recycler_view.isVisible = false
     }
 
     override fun showEmptyState() {

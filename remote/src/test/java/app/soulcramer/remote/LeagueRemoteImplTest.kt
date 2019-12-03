@@ -42,7 +42,6 @@ class LeagueRemoteImplTest {
         leagueRemoteImpl = LeagueRemoteImpl(fdjService, leagueEntityMapper, teamEntityMapper)
     }
 
-    // <editor-fold desc="Get User">
     @Test
     fun `Given a successful response When requesting leagues from remote Then get all leagues`() =
         coroutineRule.runBlockingTest {
@@ -66,7 +65,6 @@ class LeagueRemoteImplTest {
             coVerify { fdjService.getLeagueTeams(any()) }
             assertThat(teams).hasSize(stubTeams.size)
         }
-    // </editor-fold>
 
     private fun stubFdjServiceGetLeagues(leagues: List<RemoteLeague>) {
         coEvery { fdjService.getLeagues() } returns ResponseLeague(leagues)

@@ -1,12 +1,9 @@
-package app.soulcramer.presentation.test
+package app.soulcramer.remote.test
 
-import app.soulcramer.domain.model.Player
-import app.soulcramer.presentation.test.DataFactory.Factory.randomUuid
+import app.soulcramer.remote.model.RemotePlayer
+import app.soulcramer.remote.test.DataFactory.Factory.randomUuid
 
-/**
- * Factory class for Player related instances
- */
-class PlayerFactory {
+class RemotePlayerFactory {
 
     companion object Factory {
 
@@ -17,15 +14,15 @@ class PlayerFactory {
             singin: String = randomUuid(),
             birthday: String = randomUuid(),
             imageUrl: String = randomUuid()
-        ): Player {
-            return Player(id, name, position, singin, birthday, imageUrl)
+        ): RemotePlayer {
+            return RemotePlayer(id, name, position, singin, birthday, imageUrl)
         }
 
         fun makePlayerList(
             count: Int,
             name: String = ""
-        ): List<Player> {
-            val teams = mutableListOf<Player>()
+        ): List<RemotePlayer> {
+            val teams = mutableListOf<RemotePlayer>()
             repeat(count) {
                 teams += makePlayer(name = name)
             }

@@ -15,9 +15,10 @@ class PlayerFactory {
             name: String = randomUuid(),
             position: String = randomUuid(),
             singin: String = randomUuid(),
+            birthday: String = randomUuid(),
             imageUrl: String = randomUuid()
         ): Player {
-            return Player(id, name, position, singin, imageUrl)
+            return Player(id, name, position, singin, birthday, imageUrl)
         }
 
         fun makePlayerList(
