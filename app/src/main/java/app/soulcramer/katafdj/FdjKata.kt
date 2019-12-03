@@ -2,7 +2,6 @@ package app.soulcramer.katafdj
 
 import android.app.Application
 import app.soulcramer.cache.cacheModule
-import app.soulcramer.katafdj.di.appModule
 import app.soulcramer.presentation.presentationModule
 import app.soulcramer.remote.remoteModule
 import org.koin.android.ext.koin.androidContext
@@ -20,10 +19,8 @@ class FdjKata : Application() {
         if (GlobalContext.getOrNull() == null) {
             startKoin {
                 androidLogger()
-                // Android context
                 androidContext(this@FdjKata)
-                // modules
-                modules(listOf(remoteModule, cacheModule, presentationModule, appModule))
+                modules(listOf(remoteModule, cacheModule, presentationModule))
             }
         }
 
