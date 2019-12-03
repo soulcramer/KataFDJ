@@ -12,12 +12,12 @@ import retrofit2.http.Query
 interface FdjService {
 
 
-    @GET("api/v1/json/1/all_leagues.php")
+    @GET("all_leagues.php")
     suspend fun getLeagues(): ResponseLeague
 
-    @GET("api/v1/json/1/search_all_teams.php")
+    @GET("search_all_teams.php")
     suspend fun getLeagueTeams(@Query("l") leagueName: String): ResponseTeam
 
-    @GET("api/v1/json/1/searchplayers.php")
+    @GET("searchplayers.php")
     suspend fun getTeamPlayers(@Query("t") teamName: String): ResponsePlayer
 }

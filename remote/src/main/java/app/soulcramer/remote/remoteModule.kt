@@ -15,7 +15,7 @@ val remoteModule: Module = module(override = true) {
     factory { PlayerEntityMapper() }
 
     single {
-        FdjServiceFactory.makeFdjService(BuildConfig.DEBUG)
+        FdjServiceFactory.makeFdjService(BuildConfig.DEBUG, BuildConfig.TSDB_API_KEY)
     }
 
     factory<LeagueRemoteStore> { LeagueRemoteImpl(get(), get(), get()) }

@@ -5,6 +5,7 @@ import app.soulcramer.domain.model.Team
 import app.soulcramer.domain.repository.league.LeagueRemoteStore
 import app.soulcramer.remote.mapper.LeagueEntityMapper
 import app.soulcramer.remote.mapper.TeamEntityMapper
+import java.net.UnknownHostException
 
 class LeagueRemoteImpl(
     private val service: FdjService,
@@ -13,12 +14,22 @@ class LeagueRemoteImpl(
 ) : LeagueRemoteStore {
 
     override suspend fun getTeams(leagueName: String): List<Team> {
-        return service.getLeagueTeams(leagueName).teams?.map(teamEntityMapper::mapFromRemote)
-            ?: emptyList()
+        return try {
+            service.getLeagueTeams(leagueName).teams?.map(teamEntityMapper::mapFromRemote)
+                ?: emptyList()
+        } catch (uhe: UnknownHostException) {
+            // No internet
+            emptyList()
+        }
     }
 
     override suspend fun getAllLeagues(): List<League> {
-        return service.getLeagues().leagues?.map(leagueEntityMapper::mapFromRemote)
+        return try {
+            service.getLeagues().leagues?.map(leagueEntityMapper::mapFromRemote)
             ?: emptyList()
+        } catch (uhe: UnknownHostException) {
+            // No internet
+            emptyList()
+        }
     }
 }

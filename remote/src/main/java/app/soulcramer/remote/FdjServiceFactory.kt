@@ -11,16 +11,20 @@ import java.time.Duration
 
 object FdjServiceFactory {
 
-    fun makeFdjService(isDebug: Boolean): FdjService {
+    fun makeFdjService(isDebug: Boolean, apiKey: String): FdjService {
         val okHttpClient = makeOkHttpClient(
             makeLoggingInterceptor(isDebug)
         )
-        return makeFdjService(okHttpClient, makeMoshi())
+        return makeFdjService(okHttpClient, makeMoshi(), apiKey)
     }
 
-    private fun makeFdjService(okHttpClient: OkHttpClient, moshi: Moshi): FdjService {
+    private fun makeFdjService(
+        okHttpClient: OkHttpClient,
+        moshi: Moshi,
+        apiKey: String
+    ): FdjService {
         val retrofit = Retrofit.Builder()
-            .baseUrl("https://www.thesportsdb.com/")
+            .baseUrl("https://www.thesportsdb.com/api/v1/json/$apiKey/")
             .client(okHttpClient)
             .addConverterFactory(MoshiConverterFactory.create(moshi))
             .build()

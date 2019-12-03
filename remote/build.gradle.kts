@@ -1,3 +1,5 @@
+import com.android.builder.internal.ClassFieldImpl
+
 plugins {
     id("com.android.library")
     kotlin("android")
@@ -12,6 +14,14 @@ android {
         targetSdkVersion(BuildConfigs.targetSdk)
 
         consumerProguardFiles("consumer-rules.pro")
+
+        addBuildConfigField(
+            ClassFieldImpl(
+                "String",
+                "TSDB_API_KEY",
+                project.properties.getOrDefault("FDJ_TSDB_API_KEY", "1") as String
+            )
+        )
     }
 
     buildTypes {
