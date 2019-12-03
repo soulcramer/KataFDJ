@@ -32,7 +32,7 @@ class BrowseTeamsFragment : Fragment(), BrowseTeamsContract.View {
     }
 
     private val leagueAdapter by lazy {
-        ArrayAdapter<String>(context, R.layout.item_league, mutableListOf())
+        ArrayAdapter<String>(requireContext(), R.layout.item_league, mutableListOf())
     }
 
     override fun onCreateView(

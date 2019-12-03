@@ -27,11 +27,11 @@ val presentationModule: Module = module(override = true) {
     factory { LeagueMapper() }
     factory { TeamMapper() }
 
-    single<BrowseTeamsContract.Presenter> { (view: BrowseTeamsContract.View, coroutineScope: CoroutineScope, leagueName: String) ->
+    factory<BrowseTeamsContract.Presenter> { (view: BrowseTeamsContract.View, coroutineScope: CoroutineScope, leagueName: String) ->
         BrowseTeamsPresenter(view, get(), get(), get(), get(), coroutineScope, leagueName)
     }
 
-    single<BrowsePlayersContract.Presenter> { (view: BrowsePlayersContract.View, coroutineScope: CoroutineScope, teamName: String) ->
+    factory<BrowsePlayersContract.Presenter> { (view: BrowsePlayersContract.View, coroutineScope: CoroutineScope, teamName: String) ->
         BrowsePlayersPresenter(view, get(), get(), coroutineScope, teamName)
     }
 }
